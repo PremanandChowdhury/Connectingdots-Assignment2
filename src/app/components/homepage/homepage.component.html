@@ -1,0 +1,4 @@
+<form [formGroup]="uploadForm">
+  <input type="file" name="Upload" id="upload" formControlName="file" (change)="selectedFile($event)"><br />
+  <button type="submit" (click)="uploadFile()">Upload</button>
+</form>

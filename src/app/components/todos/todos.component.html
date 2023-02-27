@@ -1,3 +1,10 @@
-<p>
-  todos works!
-</p>
+<app-navbar></app-navbar>
+<div class="container">
+ <!-- *list will have a checkbox and clicking on that we have to update the completed status -->
+ <ul>
+  <li *ngFor="let item of taskList; let i = index;">
+    <input type="checkbox"> 
+    <span>{{item.todo}}</span>
+  </li>
+ </ul>
+</div>

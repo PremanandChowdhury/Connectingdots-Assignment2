@@ -10,10 +10,11 @@ import { LoginComponent } from './components/login/login.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', canActivate: [AuthGuard], component: LoginComponent },
   { path: 'home', canActivate: [AuthGuard], component: HomepageComponent },
   { path: 'todo', canActivate: [AuthGuard], component: TodosComponent }
 ]
@@ -22,7 +23,8 @@ const routes: Routes = [
     AppComponent,
     HomepageComponent,
     TodosComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

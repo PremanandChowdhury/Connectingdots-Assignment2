@@ -1,4 +1,7 @@
-<form [formGroup]="uploadForm">
-  <input type="file" name="Upload" id="upload" formControlName="file" (change)="selectedFile($event)"><br />
-  <button type="submit" (click)="uploadFile()">Upload</button>
-</form>
+<app-navbar></app-navbar>
+<div class="container">
+  <form [formGroup]="uploadForm">
+    <input type="file" name="Upload" id="upload" formControlName="file" (change)="selectedFile($event)"><br />
+    <button type="submit" (click)="uploadFile()">Upload</button>
+  </form>
+</div>

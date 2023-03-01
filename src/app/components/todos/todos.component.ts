@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../../_services/todos.services';
 
 @Component({
@@ -8,34 +7,45 @@ import { TodoService } from '../../_services/todos.services';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todoForm: FormGroup
-  taskList:any [] = []
+  taskList: any[] = []
 
-  constructor(private todoService: TodoService, private fb: FormBuilder) { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    this.buildForm()
+    this.getAllTodos()
+  }
+
+  getAllTodos() {
+    this.taskList = []
     this.todoService.getAll().subscribe((result: any) => {
-      if(result) {
+      if (result) {
         this.taskList = result['todos']
-        console.log(this.taskList);
-        
       }
     })
   }
+  updateItem(item: any, i: number) {
+    console.log('Id ', i + 1, 'form value ', item)
+    const value = {
+      "completed": !item['completed']
+    }
 
-  buildForm() {
-    this.todoForm = this.fb.group({
-      'item-content': ['', Validators.required]
+    this.todoService.updateItem(value, i + 1).subscribe((result: any) => {
+      if (result) {
+        alert('Updated Successfully')
+      }
+
     })
   }
 
-  // update(item: any, i: number) {
-  //   const value = this.todoForm.value
-  //   this.todoService.updateItem(item, i).subscribe((result: any) => {
-  //     console.log('>> result', result);
-      
-  //   })
-  // }
+  removeItem(i: number) {
+    this.taskList.splice(i, 1)
+    console.log(this.taskList);
+    
+    this.todoService.deleteItem(i+1).subscribe((result: any) => {
+      if (result) {
+        alert('Deletion Completed')
+      }
+    })
+  }
 
 }

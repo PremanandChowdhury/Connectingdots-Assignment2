@@ -1,10 +1,13 @@
 <app-navbar></app-navbar>
 <div class="container">
- <!-- *list will have a checkbox and clicking on that we have to update the completed status -->
- <ul>
-  <li *ngFor="let item of taskList; let i = index;">
-    <input type="checkbox"> 
-    <span>{{item.todo}}</span>
-  </li>
- </ul>
+   <ul class="list-wrapper">
+    <li *ngFor="let item of taskList; let i = index;">
+      <span>{{i + 1}}</span> &nbsp;<input type="checkbox" (click)="updateItem(item, i)" [(ngModel)]="item.completed">
+      <div *ngIf="item.completed" class="list-item"><s>{{item.todo}}</s></div>
+      <div *ngIf="!item.completed" class="list-item">{{item.todo}}</div>
+      <div class="list-action">
+        <span><button (click)="removeItem(i)">Delete</button></span>
+      </div>
+    </li>
+   </ul>
 </div>

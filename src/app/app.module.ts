@@ -14,7 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', canActivate: [AuthGuard], component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'home', canActivate: [AuthGuard], component: HomepageComponent },
   { path: 'todo', canActivate: [AuthGuard], component: TodosComponent }
 ]
@@ -24,7 +24,7 @@ const routes: Routes = [
     HomepageComponent,
     TodosComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
